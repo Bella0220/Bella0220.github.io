@@ -1,0 +1,158 @@
+< html>
+<html>
+<head>
+    <title>Magic Supermarket Choice</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #subtitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        #supermarket {
+            margin-top: 50px;
+            display: none;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .item {
+            cursor: pointer;
+            text-align: center;
+            width: 150px;
+            transition: transform 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.1);
+        }
+
+        .item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #result {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 3;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        #ad {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            background: #ffeb3b;
+            padding: 15px;
+            border-radius: 8px;
+            animation: popup 0.5s;
+            font-weight: bold;
+        }
+
+        @keyframes popup {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div id="subtitle">
+        <h2>You accidentally wander into a magic supermarket. There are 5 wish items on the shelf. You can only take one. Which will you choose?</h2>
+    </div>
+
+    <div id="supermarket">
+        <div class="item" onclick="showResult('switch')">
+            <img src="https://img.icons8.com/clouds/100/nintendo-switch.png" alt="Nintendo Switch">
+            <p>Nintendo Switch</p>
+        </div>
+        <div class="item" onclick="showResult('concert')">
+            <img src="https://img.icons8.com/clouds/100/ticket.png" alt="Concert Ticket">
+            <p>Idol Concert Ticket</p>
+        </div>
+        <div class="item" onclick="showResult('exam')">
+            <img src="https://img.icons8.com/clouds/100/test-passed.png" alt="Exam Answers">
+            <p>Final Exam Answers</p>
+        </div>
+        <div class="item" onclick="showResult('novel')">
+            <img src="https://img.icons8.com/clouds/100/book.png" alt="Novel">
+            <p>Bestselling Web Novel</p>
+        </div>
+        <div class="item" onclick="showResult('gossip')">
+            <img src="https://img.icons8.com/clouds/100/topic.png" alt="Gossip">
+            <p>School-wide Gossip Collection</p>
+        </div>
+    </div>
+
+    <div id="result"></div>
+    <div id="ad"></div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('subtitle').style.display = 'none';
+            document.getElementById('supermarket').style.display = 'flex';
+        }, 2000);
+
+        const results = {
+            switch: `You enjoy interaction, entertainment and strategic thinking.<br>
+                    You might be creative, quick-responsive, and enjoy challenges & teamwork.<br>
+                    Suitable careers: Game designer, Esports athlete/commentator, Software engineer`,
+            
+            concert: `You pursue passion and artistic expression.<br>
+                    Likely sensitive, romantic, and charismatic.<br>
+                    Suitable careers: Musician, Singer, Event planner`,
+            
+            exam: `You value efficiency and results.<br>
+                  Likely rational, practical, good at planning & problem-solving.<br>
+                  Suitable careers: Data analyst, Educational consultant, Auditor`,
+            
+            novel: `You love stories and imagination.<br>
+                   Likely empathetic, text-sensitive, or insightful about pop culture.<br>
+                   Suitable careers: Writer, Screenwriter, Psychologist`,
+            
+            gossip: `You thrive in social connections.<br>
+                    Likely observant, communicative, good at information management.<br>
+                    Suitable careers: Journalist, Influencer, PR manager, HR specialist`
+        };
+
+        function showResult(choice) {
+            document.getElementById('supermarket').style.display = 'none';
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = results[choice];
+            resultDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('ad').innerHTML = 
+                    "Join the experimental learning programs by ARCH Education, where you will find your way to a future of possibilities!";
+                document.getElementById('ad').style.display = 'block';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
